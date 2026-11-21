@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duskline Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">DL</span> DUSKLINE <em>Cover Studio</em></div>
+  <div class="top-actions">
+    <button id="undoBtn" type="button" title="Undo">↩ Undo</button>
+    <button id="redoBtn" type="button" title="Redo">↪ Redo</button>
+    <button id="exportAllBtn" type="button" class="primary">Export all 3 sizes</button>
+  </div>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>1 · Photos</h2>
+      <p class="hint">Your photos never leave this machine. Drag a photo onto the preview to reframe it.</p>
+      <div class="slots" id="photoSlots"></div>
+      <div class="row">
+        <button id="samplePierBtn" type="button">Load sample: Pier</button>
+        <button id="sampleBlvdBtn" type="button">Load sample: Boulevard</button>
+      </div>
+      <label class="file-label">Upload up to 4 photos
+        <input id="photoInput" type="file" accept="image/*" multiple>
+      </label>
+      <label>Selected panel photo
+        <select id="panelPhotoSelect"></select>
+      </label>
+      <label>Zoom <span id="zoomVal">100%</span>
+        <input id="zoomRange" type="range" min="100" max="260" value="100">
+      </label>
+      <div class="row">
+        <button id="portraitBtn" type="button">Portrait framing</button>
+        <button id="fillAllBtn" type="button">Fill all panels</button>
+      </div>
+    </div>
+    <div class="group">
+      <h2>2 · Layout</h2>
+      <div class="chips" id="layoutChips"></div>
+      <h2>3 · Grade</h2>
+      <div class="chips" id="gradeChips"></div>
+    </div>
+    <div class="group">
+      <h2>4 · Lettering</h2>
+      <label>Title <input id="titleInput" type="text" maxlength="24" value="SUNSET HEIST"></label>
+      <label>Subtitle <input id="subtitleInput" type="text" maxlength="40" value="a duskline story"></label>
+      <label>Name tag <input id="nameInput" type="text" maxlength="18" value="LUCIA"></label>
+      <label>Role tag <input id="roleInput" type="text" maxlength="24" value="GETAWAY DRIVER"></label>
+      <label>Review line <input id="reviewInput" type="text" maxlength="80" value="The most wanted poster of the year."></label>
+      <label>Heat <span id="heatVal">4 / 5</span>
+        <input id="heatRange" type="range" min="1" max="5" value="4">
+      </label>
+    </div>
+    <div class="group">
+      <h2>5 · Finish</h2>
+      <label class="check"><input id="grainCheck" type="checkbox" checked> Film grain + vignette</label>
+      <label class="check"><input id="halftoneCheck" type="checkbox"> Halftone title block</label>
+      <label class="check"><input id="bandedCheck" type="checkbox" checked> Inked panel borders</label>
+      <label>Preview size
+        <select id="previewSizeSelect">
+          <option value="square">Square 1080 × 1080</option>
+          <option value="portrait">Portrait 1080 × 1350</option>
+          <option value="wide">Wide 1920 × 1080</option>
+        </select>
+      </label>
+      <div class="row">
+        <button id="exportOneBtn" type="button">Export this size</button>
+        <button id="shuffleBtn" type="button">Surprise me</button>
+      </div>
+      <p id="status" role="status">Loading samples…</p>
+    </div>
+  </section>
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+    <p class="stage-hint">Click a panel to select it · drag to reframe · scroll to zoom · double-click a panel to cycle its photo</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
